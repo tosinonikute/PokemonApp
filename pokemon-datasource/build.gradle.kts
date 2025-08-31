@@ -21,5 +21,8 @@ android {
 }
 
 dependencies {
+    implementation(project(ProjectModules.POKEMON_DATA))
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
     testImplementation(libs.junit)
 }
