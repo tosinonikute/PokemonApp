@@ -94,7 +94,7 @@ fun PokemonCard(
                             model = pokemon.imageUrl,
                             contentDescription = stringResource(R.string.pokemon),
                             modifier = Modifier
-                                .size(100.dp)
+                                .fillMaxSize()
                                 .aspectRatio(1f),
                             contentScale = ContentScale.Fit
                         )

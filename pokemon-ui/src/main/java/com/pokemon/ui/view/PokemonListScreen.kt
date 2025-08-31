@@ -10,6 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.pokemon.presentation.state.PokemonPresentationState.Loading
@@ -50,11 +51,18 @@ fun PokemonListScreen(
         ) {
             when (presentationState) {
                 is Loading -> {
-                    CircularProgressIndicator(
+                    Box(
                         modifier = Modifier
-                            .size(48.dp)
-                            .align(Alignment.Center)
-                    )
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.background),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(48.dp),
+                            color = Color.Black,
+                            strokeWidth = 4.dp
+                        )
+                    }
                 }
 
                 is Success -> {

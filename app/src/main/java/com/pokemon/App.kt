@@ -40,7 +40,7 @@ fun App(
                     onPokemonClick = { pokemonId ->
                         navController.navigateSingleTop(Routes.Detail(pokemonId))
                     },
-                    onRetry = {},
+                    onRetry = { pokemonListViewModel.onLoadPokemonList() },
                     uiMapper = uiMapper
                 )
             }

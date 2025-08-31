@@ -2,7 +2,9 @@ package com.pokemon.ui.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -10,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
@@ -45,7 +48,8 @@ fun PokemonDetailScreen(
                 CircularProgressIndicator(
                     modifier = Modifier
                         .size(48.dp)
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
+                    color = Color.Black
                 )
             }
             is Success -> {
@@ -71,7 +75,9 @@ private fun PokemonDetailCard(
     onBackClick: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
     ) {
         Row(
             modifier = Modifier
@@ -159,6 +165,8 @@ private fun PokemonDetailCard(
                 value = "${uiModel.height / 10.0} m"
             )
         }
+
+        Spacer(modifier = Modifier.height(48.dp))
     }
 }
 

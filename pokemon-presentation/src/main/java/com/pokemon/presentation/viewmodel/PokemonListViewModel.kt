@@ -25,6 +25,10 @@ class PokemonListViewModel @Inject constructor(
     val pokemonPresentationState: Flow<PokemonPresentationState> = _pokemonPresentationState.asStateFlow()
 
     init {
+        onLoadPokemonList()
+    }
+
+    fun onLoadPokemonList() {
         viewModelScope.launch {
             try {
                 val pokemonList = getPokemonListUseCase.execute().map {
