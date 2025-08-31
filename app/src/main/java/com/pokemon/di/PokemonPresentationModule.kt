@@ -1,5 +1,6 @@
 package com.pokemon.di
 
+import com.pokemon.ui.mapper.PokemonDetailPresentationToUiMapper
 import com.pokemon.ui.mapper.PokemonPresentationToUiMapper
 import dagger.Module
 import dagger.Provides
@@ -13,4 +14,8 @@ class PokemonPresentationModule {
     @Provides
     fun providerPokemonPresentationToUiMapper(
     ) = PokemonPresentationToUiMapper()
+
+    @Provides
+    fun providerPokemonDetailPresentationToUiMapper(
+    ) = PokemonDetailPresentationToUiMapper()
 }

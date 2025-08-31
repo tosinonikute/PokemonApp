@@ -10,7 +10,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.pokemon.presentation.state.PokemonPresentationState.Loading
@@ -87,7 +86,7 @@ fun PokemonListScreen(
 
                 is Error -> {
                     ErrorLayout(
-                        message = stringResource(R.string.no_pokemon_and_retry_error),
+                        message = stringResource(R.string.no_pokemon_fetched),
                         onRetry = onRetry,
                         modifier = Modifier.align(Alignment.Center)
                     )

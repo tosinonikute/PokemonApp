@@ -12,15 +12,22 @@ import com.pokemon.main.Routes
 import com.pokemon.main.composableNoAnimation
 import com.pokemon.presentation.viewmodel.PokemonListViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.toRoute
+import com.pokemon.main.navigateSingleTop
+import com.pokemon.presentation.viewmodel.PokemonDetailViewModel
+import com.pokemon.ui.mapper.PokemonDetailPresentationToUiMapper
 import com.pokemon.ui.mapper.PokemonPresentationToUiMapper
+import com.pokemon.ui.view.PokemonDetailScreen
 import com.pokemon.ui.view.PokemonListScreen
 
 @Composable
 fun App(
-    uiMapper: PokemonPresentationToUiMapper
+    uiMapper: PokemonPresentationToUiMapper,
+    detailUiMapper: PokemonDetailPresentationToUiMapper
 ) {
     val navController = rememberNavController()
     val pokemonListViewModel = hiltViewModel<PokemonListViewModel>()
+    val pokemonDetailViewModel = hiltViewModel<PokemonDetailViewModel>()
     NavHost(
         navController,
         startDestination = Routes.Home::class,
@@ -30,13 +37,23 @@ fun App(
             composableNoAnimation<Routes.List> {
                 PokemonListScreen(
                     viewModel = pokemonListViewModel,
-                    onPokemonClick = {},
+                    onPokemonClick = { pokemonId ->
+                        navController.navigateSingleTop(Routes.Detail(pokemonId))
+                    },
                     onRetry = {},
                     uiMapper = uiMapper
                 )
             }
-            composableNoAnimation<Routes.Detail> {
-
+        }
+        navigation<Routes.DetailGraph>(startDestination = Routes.Detail::class) {
+            composableNoAnimation<Routes.Detail> { backStackEntry ->
+                val route: Routes.Detail = backStackEntry.toRoute()
+                pokemonDetailViewModel.onGetPokemonDetail(route.pokemonId ?: 0)
+                PokemonDetailScreen(
+                    pokemonDetailViewModel = pokemonDetailViewModel,
+                    detailUiMapper = detailUiMapper,
+                    onBackClick = { navController.popBackStack()  }
+                )
             }
         }
     }

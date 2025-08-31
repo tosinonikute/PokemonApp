@@ -11,5 +11,8 @@ sealed interface Routes {
     data object List : Routes
 
     @Serializable
-    data object Detail : Routes
+    data class Detail(val pokemonId: Int?) : Routes
+
+    @Serializable
+    data object DetailGraph : Routes
 }

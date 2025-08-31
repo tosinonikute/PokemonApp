@@ -2,13 +2,10 @@ package com.pokemon.di
 
 import android.content.Context
 import com.pokemon.data.datasource.PokemonDataSource
-import com.pokemon.data.mapper.PokemonInfoDataModelToDomainMapper
-import com.pokemon.data.repository.PokemonDataRepository
 import com.pokemon.datasource.api.datasource.PokemonRemoteDataSource
-import com.pokemon.datasource.api.mapper.PokemonApiToDataMapper
+import com.pokemon.datasource.api.mapper.PokemonDetailModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDataMapper
 import com.pokemon.datasource.api.service.PokemonApiService
-import com.pokemon.domain.repository.PokemonRepository
 import com.pokemon.util.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
@@ -29,19 +26,19 @@ class PokemonDataSourceModule {
     @Provides
     fun providerPokemonRemoteDataSource(
         pokemonApiService: PokemonApiService,
-        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper
+        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper,
+        pokemonDetailModelApiToDataMapper: PokemonDetailModelApiToDataMapper
     ): PokemonDataSource = PokemonRemoteDataSource(
         pokemonApiService,
-        pokemonInfoModelApiToDataMapper
+        pokemonInfoModelApiToDataMapper,
+        pokemonDetailModelApiToDataMapper
     )
 
     @Provides
-    fun providerPokemonApiToDataMapper(
-        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper
-    ) = PokemonApiToDataMapper(pokemonInfoModelApiToDataMapper)
+    fun providerPokemonInfoModelApiToDataMapper() = PokemonInfoModelApiToDataMapper()
 
     @Provides
-    fun providerPokemonInfoModelApiToDataMapper() = PokemonInfoModelApiToDataMapper()
+    fun providerPokemonDetailModelApiToDataMapper() = PokemonDetailModelApiToDataMapper()
 
     @Singleton
     @Provides

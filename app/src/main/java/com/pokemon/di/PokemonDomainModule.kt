@@ -1,9 +1,10 @@
 package com.pokemon.di
 
 import com.pokemon.domain.repository.PokemonRepository
+import com.pokemon.domain.usecase.GetPokemonDetailUseCase
 import com.pokemon.domain.usecase.GetPokemonListUseCase
+import com.pokemon.presentation.mapper.PokemonDetailDomainToPresentationMapper
 import com.pokemon.presentation.mapper.PokemonDomainToPresentationMapper
-import com.pokemon.ui.mapper.PokemonPresentationToUiMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,6 +24,18 @@ class PokemonDomainModule {
     }
 
     @Provides
+    @Singleton
+    fun provideGetPokemonDetailUseCase(
+        pokemonRepository: PokemonRepository
+    ): GetPokemonDetailUseCase {
+        return GetPokemonDetailUseCase(pokemonRepository)
+    }
+
+    @Provides
     fun providerPokemonDomainToPresentationMapper(
     ) = PokemonDomainToPresentationMapper()
+
+    @Provides
+    fun providerPokemonDetailDomainToPresentationMapper(
+    ) = PokemonDetailDomainToPresentationMapper()
 }
