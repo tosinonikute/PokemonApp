@@ -10,7 +10,8 @@ class PokemonPresentationToUiMapper {
             name = model.name.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
             },
-            id = model.id
+            id = model.id,
+            imageUrl = model.imageUrl
         )
     }
 }

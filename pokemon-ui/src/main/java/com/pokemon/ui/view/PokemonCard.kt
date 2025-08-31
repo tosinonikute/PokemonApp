@@ -1,6 +1,5 @@
 package com.pokemon.ui.view
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,12 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.pokemon.ui.R
 import com.pokemon.ui.model.PokemonInfoUiModel
 
@@ -33,7 +32,7 @@ fun PokemonCard(
             .aspectRatio(3f / 2f)
             .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         )
@@ -73,7 +72,7 @@ fun PokemonCard(
 
                         Text(
                             text = stringResource(R.string.pokemon_id, pokemon.id),
-                            fontSize = 20.sp,
+                            fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -91,8 +90,8 @@ fun PokemonCard(
                             .aspectRatio(1f),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(
-                            painter = painterResource(R.drawable.pokemon_dummy),
+                        AsyncImage(
+                            model = pokemon.imageUrl,
                             contentDescription = stringResource(R.string.pokemon),
                             modifier = Modifier
                                 .size(100.dp)
