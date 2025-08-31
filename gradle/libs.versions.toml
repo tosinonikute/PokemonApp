@@ -22,7 +22,7 @@ junit = "4.13.2"
 mockito-inline = "5.2.0"
 kotlinx-coroutines = "1.8.1"
 mockito-kotlin = "5.4.0"
-assertj-android = "1.2.0"
+assertj = "3.26.0"
 
 [libraries]
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
@@ -70,7 +70,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito-inline" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
-assertj-android = { group = "com.squareup.assertj", name = "assertj-android", version.ref = "assertj-android" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

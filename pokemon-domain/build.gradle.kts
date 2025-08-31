@@ -21,5 +21,10 @@ android {
 }
 
 dependencies {
+    // Test
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.assertj.core)
 }

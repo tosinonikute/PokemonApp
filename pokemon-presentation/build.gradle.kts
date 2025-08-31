@@ -37,5 +37,5 @@ dependencies {
     testImplementation(libs.mockito.inline)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.assertj.android)
+    testImplementation(libs.assertj.core)
 }
