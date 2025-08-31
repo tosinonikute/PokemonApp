@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pokemon</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="no_pokemon_and_retry_error">No pokemon fetched</string>
+    <string name="pokemon_retry">Retry</string>
+    <string name="pokemon_id">#%1$d</string>
+</resources>

@@ -1,0 +1,98 @@
+package com.pokemon.ui.view
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.pokemon.presentation.state.PokemonPresentationState.Loading
+import com.pokemon.presentation.state.PokemonPresentationState.Error
+import com.pokemon.presentation.state.PokemonPresentationState.Success
+import com.pokemon.presentation.viewmodel.PokemonListViewModel
+import com.pokemon.ui.R
+import com.pokemon.ui.mapper.PokemonPresentationToUiMapper
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PokemonListScreen(
+    viewModel: PokemonListViewModel,
+    onPokemonClick: (Int) -> Unit,
+    onRetry: () -> Unit,
+    uiMapper: PokemonPresentationToUiMapper
+) {
+    val presentationState = viewModel.pokemonPresentationState.collectAsState(Loading).value
+    val gridState = rememberLazyGridState()
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(stringResource(R.string.app_name))
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    titleContentColor = MaterialTheme.colorScheme.onSurface
+                )
+            )
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            when (presentationState) {
+                is Loading -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+
+                is Success -> {
+                    val uiList = presentationState.pokemonList.map { uiMapper.map(it) }
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(2),
+                        state = gridState,
+                        contentPadding = PaddingValues(
+                            start = 8.dp,
+                            top = 16.dp,
+                            end = 8.dp,
+                            bottom = 88.dp
+                        ),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        items(
+                            items = uiList,
+                            key = { it.id }
+                        ) { pokemon ->
+                            PokemonCard(
+                                pokemon = pokemon,
+                                onClick = { onPokemonClick(pokemon.id) }
+                            )
+                        }
+                    }
+                }
+
+                is Error -> {
+                    ErrorLayout(
+                        message = stringResource(R.string.no_pokemon_and_retry_error),
+                        onRetry = onRetry,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
+        }
+    }
+}

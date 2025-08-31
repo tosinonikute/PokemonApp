@@ -1,9 +1,14 @@
 package com.pokemon.di
 
 import android.content.Context
+import com.pokemon.data.datasource.PokemonDataSource
+import com.pokemon.data.mapper.PokemonInfoDataModelToDomainMapper
+import com.pokemon.data.repository.PokemonDataRepository
+import com.pokemon.datasource.api.datasource.PokemonRemoteDataSource
 import com.pokemon.datasource.api.mapper.PokemonApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDataMapper
 import com.pokemon.datasource.api.service.PokemonApiService
+import com.pokemon.domain.repository.PokemonRepository
 import com.pokemon.util.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
@@ -20,6 +25,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class PokemonDataSourceModule {
+
+    @Provides
+    fun providerPokemonRemoteDataSource(
+        pokemonApiService: PokemonApiService,
+        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper
+    ): PokemonDataSource = PokemonRemoteDataSource(
+        pokemonApiService,
+        pokemonInfoModelApiToDataMapper
+    )
 
     @Provides
     fun providerPokemonApiToDataMapper(
