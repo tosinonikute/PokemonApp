@@ -9,8 +9,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,10 +21,6 @@ class PokemonListViewModel @Inject constructor(
 
     private val _pokemonPresentationState = MutableStateFlow<PokemonPresentationState>(PokemonPresentationState.Loading)
     val pokemonPresentationState: Flow<PokemonPresentationState> = _pokemonPresentationState.asStateFlow()
-
-    init {
-        onLoadPokemonList()
-    }
 
     fun onLoadPokemonList() {
         viewModelScope.launch {

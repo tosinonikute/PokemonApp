@@ -2,7 +2,6 @@
 agp = "8.11.1"
 kotlin = "2.0.21"
 coreKtx = "1.17.0"
-junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.1"
@@ -19,10 +18,15 @@ coil = "2.6.0"
 navigation-compose = "2.9.0-beta03"
 hiltCompose = "1.2.0"
 
+junit = "4.13.2"
+mockito-inline = "5.2.0"
+kotlinx-coroutines = "1.8.1"
+mockito-kotlin = "5.4.0"
+assertj-android = "1.2.0"
+
 [libraries]
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -60,6 +64,13 @@ okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver",
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompose" }
+
+# Testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito-inline" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
+assertj-android = { group = "com.squareup.assertj", name = "assertj-android", version.ref = "assertj-android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

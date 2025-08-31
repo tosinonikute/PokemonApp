@@ -35,6 +35,7 @@ fun App(
     ) {
         navigation<Routes.Home>(startDestination = Routes.List::class) {
             composableNoAnimation<Routes.List> {
+                pokemonListViewModel.onLoadPokemonList()
                 PokemonListScreen(
                     viewModel = pokemonListViewModel,
                     onPokemonClick = { pokemonId ->

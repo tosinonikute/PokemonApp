@@ -33,5 +33,9 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // Test
-    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.assertj.android)
 }
