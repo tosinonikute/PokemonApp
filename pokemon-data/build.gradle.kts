@@ -21,5 +21,6 @@ android {
 }
 
 dependencies {
+    implementation(project(ProjectModules.POKEMON_DOMAIN))
     testImplementation(libs.junit)
 }

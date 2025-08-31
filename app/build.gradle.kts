@@ -49,6 +49,7 @@ dependencies {
     implementation(project(ProjectModules.POKEMON_UI))
 
     // Core
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.core.ktx)
 
     // Support

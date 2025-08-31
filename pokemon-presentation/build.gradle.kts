@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -21,5 +22,16 @@ android {
 }
 
 dependencies {
+    implementation(project(ProjectModules.POKEMON_DOMAIN))
+
+    // Core
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.core.ktx)
+
+    // DI
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    // Test
     androidTestImplementation(libs.androidx.junit)
 }
