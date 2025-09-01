@@ -12,6 +12,14 @@ class PokemonInfoModelApiToDataMapper {
     }
 
     private fun extractIdFromUrl(url: String): Int {
-        return url.removeSuffix("/").split("/").last().toInt()
+        return if (url.isBlank()) {
+            0
+        } else {
+            try {
+                url.removeSuffix("/").split("/").last().toInt()
+            } catch (e: NumberFormatException) {
+                0
+            }
+        }
     }
 }
