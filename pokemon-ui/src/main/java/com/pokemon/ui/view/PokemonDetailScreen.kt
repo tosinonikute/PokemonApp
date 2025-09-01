@@ -161,8 +161,8 @@ private fun PokemonDetailCard(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             PokemonStatRow(
-                label = "Height",
-                value = "${uiModel.height / 10.0} m"
+                label = stringResource(R.string.height_label),
+                value = stringResource(R.string.height, uiModel.height.toString())
             )
         }
 

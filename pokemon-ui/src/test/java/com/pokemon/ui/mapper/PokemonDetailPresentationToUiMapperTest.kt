@@ -31,7 +31,7 @@ class PokemonDetailPresentationToUiMapperTest {
         // Then
         assertThat(result.name).isEqualTo("Pikachu")
         assertThat(result.id).isEqualTo(25)
-        assertThat(result.height).isEqualTo(4)
+        assertThat(result.height).isEqualTo(0.4)
         assertThat(result.imageUrl).isEqualTo("https://example.com/25.png")
     }
 

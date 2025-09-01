@@ -43,7 +43,7 @@ class PokemonDetailScreenTest {
             name = "Pikachu",
             id = 1,
             imageUrl = "${ImageConstants.POKEMON_IMAGE_BASE_URL}1.png",
-            height = 40
+            height = 4.0
         )
         every { detailMockViewModel.pokemonDetailPresentationState } returns detailSuccessStateFlow
         every { detailMockMapper.map(mockPokemonDetail) } returns detailMockUiModel

@@ -6,4 +6,6 @@
     <string name="pokemon_id">#%1$d</string>
     <string name="pokemon_go_back">Go Back</string>
     <string name="loading_description">Loading</string>
+    <string name="height">%1$s m</string>
+    <string name="height_label">Height</string>
 </resources>

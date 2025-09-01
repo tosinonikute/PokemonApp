@@ -4,6 +4,8 @@ import com.pokemon.presentation.model.PokemonInfoDetailPresentationModel
 import com.pokemon.ui.model.PokemonInfoDetailUiModel
 import java.util.Locale
 
+private const val HEIGHT_DIVISOR = 10.0
+
 class PokemonDetailPresentationToUiMapper {
     fun map(model: PokemonInfoDetailPresentationModel): PokemonInfoDetailUiModel {
         return PokemonInfoDetailUiModel(
@@ -11,7 +13,7 @@ class PokemonDetailPresentationToUiMapper {
                 if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
             },
             id = model.id,
-            height = model.height,
+            height = model.height / HEIGHT_DIVISOR,
             imageUrl = model.imageUrl
         )
     }

@@ -21,7 +21,11 @@ android {
 }
 
 dependencies {
-    implementation(project(ProjectModules.POKEMON_DOMAIN))
+    implementation(project(ProjectModules.POKEMON_DATA))
+
+    // Network
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
 
     // Test
     testImplementation(libs.junit)

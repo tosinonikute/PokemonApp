@@ -1,7 +1,6 @@
 package com.pokemon.datasource.mapper
 
 import com.pokemon.datasource.api.mapper.PokemonDetailModelApiToDataMapper
-import com.pokemon.datasource.api.model.PokemonInfoApiModel
 import com.pokemon.datasource.api.model.PokemonInfoDetailApiModel
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
