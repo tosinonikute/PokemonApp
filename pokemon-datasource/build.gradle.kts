@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pokemon.datasource"
+    namespace = "com.pokemon.data"
     compileSdk = 36
 
     defaultConfig {
@@ -21,8 +21,12 @@ android {
 }
 
 dependencies {
-    implementation(project(ProjectModules.POKEMON_DATA))
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.converter.gson)
+    implementation(project(ProjectModules.POKEMON_DOMAIN))
+
+    // Test
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.assertj.core)
 }
