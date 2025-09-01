@@ -52,6 +52,10 @@ The app follows Clean Architecture principles with clear separation of concerns 
 - No lazy loading of pokemon items
 - Decision: Focused on demonstrating core list implementation within time constraints
 
+**Design Improvements**
+- Improve on the overall design of the app - for Light and Dark theme
+- Decision: Focused on displaying core UI within time constraints 
+
 **Other Features**
 - No search/filtering functionality
 - Decision: Concentrated on solid foundation architecture that would easily support these features
@@ -66,3 +70,9 @@ The app follows Clean Architecture principles with clear separation of concerns 
 - Focused on testing critical business logic (mappers) and user-facing functionality (UI)
 - Compose testing framework provides reliable UI test coverage
 - Unit tests ensure data integrity across architectural boundaries
+
+## Screenshots
+
+<img src="assets/1.png" width="350" alt="App Screenshot">
+
+<img src="assets/2.png" width="350" alt="App Screenshot">
