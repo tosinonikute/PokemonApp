@@ -73,6 +73,4 @@ The app follows Clean Architecture principles with clear separation of concerns 
 
 ## Screenshots
 
-<img src="assets/1.png" width="350" alt="App Screenshot">
-
-<img src="assets/2.png" width="350" alt="App Screenshot">
+<img src="assets/1.png" width="350" alt="App Screenshot"> <img src="assets/2.png" width="350" alt="App Screenshot">
