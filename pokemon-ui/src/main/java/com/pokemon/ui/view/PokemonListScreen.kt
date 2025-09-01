@@ -12,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.pokemon.presentation.state.PokemonPresentationState.Loading
 import com.pokemon.presentation.state.PokemonPresentationState.Error
@@ -51,10 +53,12 @@ fun PokemonListScreen(
         ) {
             when (presentationState) {
                 is Loading -> {
+                    val contentDescr = stringResource(R.string.loading_description)
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background),
+                            .background(MaterialTheme.colorScheme.background)
+                            .semantics { contentDescription = contentDescr },
                         contentAlignment = Alignment.Center
                     ) {
                         CircularProgressIndicator(

@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Pokemon</string>
     <string name="pokemon">Pokemon</string>
-    <string name="no_pokemon_fetched">No pokemon fetched</string>
+    <string name="no_pokemon_fetched">No pokemon data fetched</string>
     <string name="pokemon_retry">Retry</string>
     <string name="pokemon_id">#%1$d</string>
     <string name="pokemon_go_back">Go Back</string>
+    <string name="loading_description">Loading</string>
 </resources>
