@@ -8,7 +8,7 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 
-class PokemonDomainToPresentationMapperTest {
+class PokemonInfoDomainToPresentationMapperTest {
 
     private lateinit var mapper: PokemonInfoDomainToPresentationMapper
 
