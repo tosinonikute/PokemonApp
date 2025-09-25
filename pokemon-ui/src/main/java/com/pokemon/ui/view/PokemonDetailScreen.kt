@@ -12,7 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
@@ -48,8 +47,7 @@ fun PokemonDetailScreen(
                 CircularProgressIndicator(
                     modifier = Modifier
                         .size(48.dp)
-                        .align(Alignment.Center),
-                    color = Color.Black
+                        .align(Alignment.Center)
                 )
             }
             is Success -> {

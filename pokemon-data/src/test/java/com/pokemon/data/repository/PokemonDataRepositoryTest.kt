@@ -1,6 +1,6 @@
 package com.pokemon.data.repository
 
-import com.pokemon.data.datasource.PokemonDataSource
+import com.pokemon.data.datasource.PokemonRemoteSource
 import com.pokemon.data.mapper.PokemonInfoDataModelToDomainMapper
 import com.pokemon.data.mapper.PokemonInfoDetailModelToDomainMapper
 import com.pokemon.data.model.PokemonInfoDataModel
@@ -17,7 +17,7 @@ import org.mockito.kotlin.whenever
 class PokemonDataRepositoryTest {
 
     private lateinit var repository: PokemonDataRepository
-    private val mockDataSource = mock<PokemonDataSource>()
+    private val mockDataSource = mock<PokemonRemoteSource>()
     private val mockInfoMapper = mock<PokemonInfoDataModelToDomainMapper>()
     private val mockDetailMapper = mock<PokemonInfoDetailModelToDomainMapper>()
 

@@ -1,4 +1,4 @@
-package com.pokemon.datasource.data
+package com.pokemon.datasource.datasource
 
 import com.pokemon.data.model.PokemonInfoDataModel
 import com.pokemon.data.model.PokemonInfoDetailDataModel

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+//    id("kotlin-kapt")
 }
 
 android {
@@ -22,6 +23,9 @@ android {
 
 dependencies {
     implementation(project(ProjectModules.POKEMON_DOMAIN))
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
 
     // Test
     testImplementation(libs.junit)

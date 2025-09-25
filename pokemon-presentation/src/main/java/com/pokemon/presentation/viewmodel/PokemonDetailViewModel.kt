@@ -23,7 +23,7 @@ class PokemonDetailViewModel @Inject constructor(
         PokemonDetailPresentationState.Loading
     )
     val pokemonDetailPresentationState: Flow<PokemonDetailPresentationState>
-            = _pokemonDetailPresentationState.asStateFlow()
+    = _pokemonDetailPresentationState.asStateFlow()
 
     fun onGetPokemonDetail(pokemonId: Int) {
         viewModelScope.launch {

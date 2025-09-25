@@ -6,6 +6,7 @@ import com.pokemon.domain.usecase.GetPokemonListUseCase
 import com.pokemon.presentation.mapper.PokemonDomainToPresentationMapper
 import com.pokemon.presentation.state.PokemonPresentationState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +24,7 @@ class PokemonListViewModel @Inject constructor(
     val pokemonPresentationState: Flow<PokemonPresentationState> = _pokemonPresentationState.asStateFlow()
 
     fun onLoadPokemonList() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             try {
                 val pokemonList = getPokemonListUseCase.execute().map {
                     pokemonDomainToPresentationMapper.map(it)

@@ -1,6 +1,5 @@
 package com.pokemon.ui.view
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -10,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -54,19 +52,12 @@ fun PokemonListScreen(
             when (presentationState) {
                 is Loading -> {
                     val contentDescr = stringResource(R.string.loading_description)
-                    Box(
+                    CircularProgressIndicator(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background)
+                            .size(48.dp)
+                            .align(Alignment.Center)
                             .semantics { contentDescription = contentDescr },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(48.dp),
-                            color = Color.Black,
-                            strokeWidth = 4.dp
-                        )
-                    }
+                    )
                 }
 
                 is Success -> {
