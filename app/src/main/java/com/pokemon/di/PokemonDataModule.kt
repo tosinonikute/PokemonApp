@@ -1,6 +1,7 @@
 package com.pokemon.di
 
 import com.pokemon.data.datasource.PokemonDataSource
+import com.pokemon.data.mapper.PokemonDataToDomainMapper
 import com.pokemon.data.mapper.PokemonInfoDataModelToDomainMapper
 import com.pokemon.data.mapper.PokemonInfoDetailModelToDomainMapper
 import com.pokemon.data.repository.PokemonDataRepository
@@ -17,13 +18,18 @@ class PokemonDataModule {
     @Provides
     fun providerPokemonApiToDataMapper(
         pokemonDataSource: PokemonDataSource,
-        pokemonInfoDataModelToDomainMapper: PokemonInfoDataModelToDomainMapper,
-        pokemonInfoDetailModelToDomainMapper: PokemonInfoDetailModelToDomainMapper
+        pokemonInfoDetailModelToDomainMapper: PokemonInfoDetailModelToDomainMapper,
+        pokemonDataToDomainMapper: PokemonDataToDomainMapper
     ): PokemonRepository = PokemonDataRepository(
         pokemonDataSource,
-        pokemonInfoDataModelToDomainMapper,
-        pokemonInfoDetailModelToDomainMapper
+        pokemonInfoDetailModelToDomainMapper,
+        pokemonDataToDomainMapper
     )
+
+    @Provides
+    fun providerPokemonDataToDomainMapper(
+        pokemonInfoDataModelToDomainMapper: PokemonInfoDataModelToDomainMapper
+    ) = PokemonDataToDomainMapper(pokemonInfoDataModelToDomainMapper)
 
     @Provides
     fun providerPokemonInfoDataModelToDomainMapper(

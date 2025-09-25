@@ -3,6 +3,7 @@ package com.pokemon.di
 import android.content.Context
 import com.pokemon.data.datasource.PokemonDataSource
 import com.pokemon.datasource.api.datasource.PokemonRemoteDataSource
+import com.pokemon.datasource.api.mapper.PokemonApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonDetailModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDataMapper
 import com.pokemon.datasource.api.service.PokemonApiService
@@ -26,13 +27,18 @@ class PokemonDataSourceModule {
     @Provides
     fun providerPokemonRemoteDataSource(
         pokemonApiService: PokemonApiService,
-        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper,
-        pokemonDetailModelApiToDataMapper: PokemonDetailModelApiToDataMapper
+        pokemonDetailModelApiToDataMapper: PokemonDetailModelApiToDataMapper,
+        pokemonApiToDataMapper: PokemonApiToDataMapper
     ): PokemonDataSource = PokemonRemoteDataSource(
         pokemonApiService,
-        pokemonInfoModelApiToDataMapper,
-        pokemonDetailModelApiToDataMapper
+        pokemonDetailModelApiToDataMapper,
+        pokemonApiToDataMapper
     )
+
+    @Provides
+    fun providerPokemonApiToDataMapper(
+        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper
+    ) = PokemonApiToDataMapper(pokemonInfoModelApiToDataMapper)
 
     @Provides
     fun providerPokemonInfoModelApiToDataMapper() = PokemonInfoModelApiToDataMapper()

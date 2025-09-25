@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pokemon.data"
+    namespace = "com.pokemon.datasource"
     compileSdk = 36
 
     defaultConfig {

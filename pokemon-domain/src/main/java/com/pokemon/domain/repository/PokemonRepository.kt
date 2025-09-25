@@ -1,9 +1,9 @@
 package com.pokemon.domain.repository
 
+import com.pokemon.domain.model.PokemonDomainModel
 import com.pokemon.domain.model.PokemonInfoDetailDomainModel
-import com.pokemon.domain.model.PokemonInfoDomainModel
 
 interface PokemonRepository {
-    suspend fun pokemonList(): List<PokemonInfoDomainModel>
+    suspend fun pokemonList(offset: Int, limit: Int): PokemonDomainModel
     suspend fun pokemonDetail(pokemonId: Int): PokemonInfoDetailDomainModel
 }

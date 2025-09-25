@@ -1,6 +1,5 @@
 package com.pokemon.ui.view
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -10,11 +9,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pokemon.presentation.state.PokemonPresentationState.Loading
 import com.pokemon.presentation.state.PokemonPresentationState.Error
 import com.pokemon.presentation.state.PokemonPresentationState.Success
@@ -28,10 +27,24 @@ fun PokemonListScreen(
     viewModel: PokemonListViewModel,
     onPokemonClick: (Int) -> Unit,
     onRetry: () -> Unit,
+    onLoadMore: () -> Unit,
     uiMapper: PokemonPresentationToUiMapper
 ) {
-    val presentationState = viewModel.pokemonPresentationState.collectAsState(Loading).value
+    val presentationState by viewModel.pokemonPresentationState.collectAsStateWithLifecycle(Loading)
     val gridState = rememberLazyGridState()
+
+    LaunchedEffect(gridState) {
+        snapshotFlow { gridState.layoutInfo }
+            .collect { layoutInfo ->
+                val lastVisibleIndex = layoutInfo.visibleItemsInfo.lastOrNull()?.index
+                val totalItems = layoutInfo.totalItemsCount
+
+                // Trigger load more when user is near the end (within 1 item)
+                if (lastVisibleIndex != null && lastVisibleIndex >= totalItems - 1) {
+                    onLoadMore()
+                }
+            }
+    }
 
     Scaffold(
         topBar = {
@@ -54,23 +67,16 @@ fun PokemonListScreen(
             when (presentationState) {
                 is Loading -> {
                     val contentDescr = stringResource(R.string.loading_description)
-                    Box(
+                    CircularProgressIndicator(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background)
+                            .size(48.dp)
+                            .align(Alignment.Center)
                             .semantics { contentDescription = contentDescr },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(48.dp),
-                            color = Color.Black,
-                            strokeWidth = 4.dp
-                        )
-                    }
+                    )
                 }
 
                 is Success -> {
-                    val uiList = presentationState.pokemonList.map { uiMapper.map(it) }
+                    val uiList = (presentationState as Success).pokemonList.map { uiMapper.map(it) }
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(2),
                         state = gridState,
