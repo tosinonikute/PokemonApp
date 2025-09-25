@@ -4,8 +4,8 @@ import com.pokemon.data.datasource.PokemonLocalSource
 import com.pokemon.data.datasource.PokemonRemoteSource
 import com.pokemon.data.mapper.PokemonInfoDataModelToDomainMapper
 import com.pokemon.data.mapper.PokemonInfoDetailModelToDomainMapper
+import com.pokemon.domain.model.PokemonDomainModel
 import com.pokemon.domain.model.PokemonInfoDetailDomainModel
-import com.pokemon.domain.model.PokemonInfoDomainModel
 import com.pokemon.domain.repository.PokemonRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -37,3 +37,4 @@ class PokemonDataRepository(
         )
     }
 }
+

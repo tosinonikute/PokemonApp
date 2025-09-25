@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pokemon.presentation.state.PokemonPresentationState.Loading
 import com.pokemon.presentation.state.PokemonPresentationState.Error
 import com.pokemon.presentation.state.PokemonPresentationState.Success
@@ -26,10 +27,24 @@ fun PokemonListScreen(
     viewModel: PokemonListViewModel,
     onPokemonClick: (Int) -> Unit,
     onRetry: () -> Unit,
+    onLoadMore: () -> Unit,
     uiMapper: PokemonPresentationToUiMapper
 ) {
-    val presentationState = viewModel.pokemonPresentationState.collectAsState(Loading).value
+    val presentationState by viewModel.pokemonPresentationState.collectAsStateWithLifecycle(Loading)
     val gridState = rememberLazyGridState()
+
+    LaunchedEffect(gridState) {
+        snapshotFlow { gridState.layoutInfo }
+            .collect { layoutInfo ->
+                val lastVisibleIndex = layoutInfo.visibleItemsInfo.lastOrNull()?.index
+                val totalItems = layoutInfo.totalItemsCount
+
+                // Trigger load more when user is near the end (within 1 item)
+                if (lastVisibleIndex != null && lastVisibleIndex >= totalItems - 1) {
+                    onLoadMore()
+                }
+            }
+    }
 
     Scaffold(
         topBar = {
@@ -61,7 +76,7 @@ fun PokemonListScreen(
                 }
 
                 is Success -> {
-                    val uiList = presentationState.pokemonList.map { uiMapper.map(it) }
+                    val uiList = (presentationState as Success).pokemonList.map { uiMapper.map(it) }
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(2),
                         state = gridState,

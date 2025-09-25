@@ -1,5 +1,7 @@
 package com.pokemon.di
 
+import com.pokemon.data.datasource.PokemonDataSource
+import com.pokemon.data.mapper.PokemonDataToDomainMapper
 import com.pokemon.data.datasource.PokemonLocalSource
 import com.pokemon.data.datasource.PokemonRemoteSource
 import com.pokemon.data.mapper.PokemonInfoDataModelToDomainMapper
@@ -27,6 +29,11 @@ class PokemonDataModule {
         pokemonInfoDataModelToDomainMapper,
         pokemonInfoDetailModelToDomainMapper
     )
+
+    @Provides
+    fun providerPokemonDataToDomainMapper(
+        pokemonInfoDataModelToDomainMapper: PokemonInfoDataModelToDomainMapper
+    ) = PokemonDataToDomainMapper(pokemonInfoDataModelToDomainMapper)
 
     @Provides
     fun providerPokemonInfoDataModelToDomainMapper(

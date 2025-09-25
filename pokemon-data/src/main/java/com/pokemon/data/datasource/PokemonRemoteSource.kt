@@ -1,6 +1,6 @@
 package com.pokemon.data.datasource
 
-import com.pokemon.data.model.PokemonInfoDataModel
+import com.pokemon.data.model.PokemonDataModel
 import com.pokemon.data.model.PokemonInfoDetailDataModel
 
 interface PokemonRemoteSource {

@@ -6,6 +6,7 @@ import com.pokemon.data.datasource.PokemonRemoteSource
 import com.pokemon.datasource.api.datasource.PokemonDao
 import com.pokemon.datasource.api.datasource.PokemonLocalDataSource
 import com.pokemon.datasource.api.datasource.PokemonRemoteDataSource
+import com.pokemon.datasource.api.mapper.PokemonApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonDetailModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDatabaseMapper

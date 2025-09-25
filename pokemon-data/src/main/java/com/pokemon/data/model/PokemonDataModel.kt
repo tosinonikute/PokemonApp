@@ -1,5 +1,6 @@
 package com.pokemon.data.model
 
 data class PokemonDataModel (
-    val pokemonList: List<PokemonInfoDataModel>
+    val pokemonList: List<PokemonInfoDataModel>,
+    val count: Int
 )

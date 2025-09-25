@@ -5,6 +5,7 @@ import com.pokemon.domain.usecase.GetPokemonDetailUseCase
 import com.pokemon.domain.usecase.GetPokemonListUseCase
 import com.pokemon.presentation.mapper.PokemonDetailDomainToPresentationMapper
 import com.pokemon.presentation.mapper.PokemonDomainToPresentationMapper
+import com.pokemon.presentation.mapper.PokemonInfoDomainToPresentationMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,10 +33,15 @@ class PokemonDomainModule {
     }
 
     @Provides
-    fun providerPokemonDomainToPresentationMapper(
-    ) = PokemonDomainToPresentationMapper()
+    fun providerPokemonInfoDomainToPresentationMapper(
+    ) = PokemonInfoDomainToPresentationMapper()
 
     @Provides
     fun providerPokemonDetailDomainToPresentationMapper(
     ) = PokemonDetailDomainToPresentationMapper()
+
+    @Provides
+    fun providerPokemonDomainToPresentationMapper(
+        pokemonInfoDomainToPresentationMapper: PokemonInfoDomainToPresentationMapper
+    ) = PokemonDomainToPresentationMapper(pokemonInfoDomainToPresentationMapper)
 }

@@ -2,7 +2,10 @@ package com.pokemon.datasource.api.datasource
 
 import com.pokemon.data.datasource.PokemonRemoteSource
 import com.pokemon.data.model.PokemonInfoDataModel
+import com.pokemon.data.datasource.PokemonDataSource
+import com.pokemon.data.model.PokemonDataModel
 import com.pokemon.data.model.PokemonInfoDetailDataModel
+import com.pokemon.datasource.api.mapper.PokemonApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonDetailModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDatabaseMapper
@@ -16,7 +19,7 @@ class PokemonRemoteDataSource(
     private val pokemonDao: PokemonDao
 ) : PokemonRemoteSource {
 
-    override suspend fun getRemotePokemonList(): List<PokemonInfoDataModel> {
+    override suspend fun getRemotePokemonList(offset: Int, limit: Int): PokemonDataModel {
         val results = pokemonApiService.fetchPokemonList().results
 
         // save db

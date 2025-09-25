@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
@@ -35,13 +36,13 @@ fun App(
     ) {
         navigation<Routes.Home>(startDestination = Routes.List::class) {
             composableNoAnimation<Routes.List> {
-                pokemonListViewModel.onLoadPokemonList()
                 PokemonListScreen(
                     viewModel = pokemonListViewModel,
                     onPokemonClick = { pokemonId ->
                         navController.navigateSingleTop(Routes.Detail(pokemonId))
                     },
                     onRetry = { pokemonListViewModel.onLoadPokemonList() },
+                    onLoadMore = { pokemonListViewModel.onLoadNextPage() },
                     uiMapper = uiMapper
                 )
             }
@@ -50,6 +51,7 @@ fun App(
             composableNoAnimation<Routes.Detail> { backStackEntry ->
                 val route: Routes.Detail = backStackEntry.toRoute()
                 pokemonDetailViewModel.onGetPokemonDetail(route.pokemonId ?: 0)
+
                 PokemonDetailScreen(
                     pokemonDetailViewModel = pokemonDetailViewModel,
                     detailUiMapper = detailUiMapper,

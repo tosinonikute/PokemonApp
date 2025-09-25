@@ -8,13 +8,13 @@ import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.whenever
 
-class PokemonDomainToPresentationMapperTest {
+class PokemonInfoDomainToPresentationMapperTest {
 
-    private lateinit var mapper: PokemonDomainToPresentationMapper
+    private lateinit var mapper: PokemonInfoDomainToPresentationMapper
 
     @Before
     fun setUp() {
-        mapper = PokemonDomainToPresentationMapper()
+        mapper = PokemonInfoDomainToPresentationMapper()
     }
 
     @Test
