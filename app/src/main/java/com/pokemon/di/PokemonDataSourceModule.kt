@@ -1,11 +1,16 @@
 package com.pokemon.di
 
 import android.content.Context
-import com.pokemon.data.datasource.PokemonDataSource
+import com.pokemon.data.datasource.PokemonLocalSource
+import com.pokemon.data.datasource.PokemonRemoteSource
+import com.pokemon.datasource.api.datasource.PokemonDao
+import com.pokemon.datasource.api.datasource.PokemonLocalDataSource
 import com.pokemon.datasource.api.datasource.PokemonRemoteDataSource
 import com.pokemon.datasource.api.mapper.PokemonApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonDetailModelApiToDataMapper
 import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDataMapper
+import com.pokemon.datasource.api.mapper.PokemonInfoModelApiToDatabaseMapper
+import com.pokemon.datasource.api.mapper.PokemonInfoModelDatabaseToDataMapper
 import com.pokemon.datasource.api.service.PokemonApiService
 import com.pokemon.util.NetworkConnectionInterceptor
 import dagger.Module
@@ -27,18 +32,26 @@ class PokemonDataSourceModule {
     @Provides
     fun providerPokemonRemoteDataSource(
         pokemonApiService: PokemonApiService,
+        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper,
         pokemonDetailModelApiToDataMapper: PokemonDetailModelApiToDataMapper,
-        pokemonApiToDataMapper: PokemonApiToDataMapper
-    ): PokemonDataSource = PokemonRemoteDataSource(
+        pokemonInfoModelApiToDatabaseMapper: PokemonInfoModelApiToDatabaseMapper,
+        pokemonDao: PokemonDao
+    ): PokemonRemoteSource = PokemonRemoteDataSource(
         pokemonApiService,
+        pokemonInfoModelApiToDataMapper,
         pokemonDetailModelApiToDataMapper,
-        pokemonApiToDataMapper
+        pokemonInfoModelApiToDatabaseMapper,
+        pokemonDao
     )
 
     @Provides
-    fun providerPokemonApiToDataMapper(
-        pokemonInfoModelApiToDataMapper: PokemonInfoModelApiToDataMapper
-    ) = PokemonApiToDataMapper(pokemonInfoModelApiToDataMapper)
+    fun providerPokemonLocalDataSource(
+        pokemonInfoModelDatabaseToDataMapper: PokemonInfoModelDatabaseToDataMapper,
+        pokemonDao: PokemonDao
+    ): PokemonLocalSource = PokemonLocalDataSource(
+        pokemonInfoModelDatabaseToDataMapper,
+        pokemonDao
+    )
 
     @Provides
     fun providerPokemonInfoModelApiToDataMapper() = PokemonInfoModelApiToDataMapper()

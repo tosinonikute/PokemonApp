@@ -76,6 +76,11 @@ dependencies {
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter.gson)
 
+    // Database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
+
     // Test
     testImplementation(libs.junit)
     testImplementation(libs.okhttp.mockwebserver)

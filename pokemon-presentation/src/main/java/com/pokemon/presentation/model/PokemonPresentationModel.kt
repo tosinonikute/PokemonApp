@@ -1,6 +1,7 @@
 package com.pokemon.presentation.model
 
-data class PokemonPresentationModel (
-    val pokemonList: List<PokemonInfoPresentationModel>,
-    val count: Int
+data class PokemonInfoPresentationModel (
+    val name: String,
+    val id: Int,
+    val imageUrl: String
 )

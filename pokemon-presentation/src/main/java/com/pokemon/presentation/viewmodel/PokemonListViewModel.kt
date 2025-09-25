@@ -10,6 +10,7 @@ import com.pokemon.presentation.state.PaginationState
 import com.pokemon.presentation.state.PokemonDetailPresentationState
 import com.pokemon.presentation.state.PokemonPresentationState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -39,7 +40,7 @@ class PokemonListViewModel @Inject constructor(
     }
 
     fun onLoadPokemonList() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             try {
                 val initialOffset = 0
                 val useCaseResult = getPokemonListUseCase.execute(0, PAGE_LIMIT)
